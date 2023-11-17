@@ -1,0 +1,19 @@
+version: '3'
+services:
+  frontend:
+    container_name: frontend
+    build: . # Update with the path to your React app
+    ports:
+      - '3000:80' # Expose the app on port 3000
+    environment:
+      - HOST=backend
+    depends_on:
+      - backend
+
+  backend:
+    container_name: backend
+    build: ./backend # Update with the path to your Node.js app
+    ports:
+      - '3001:3001' # Expose the backend on port 3001
+    environment:
+      - NODE_ENV=production

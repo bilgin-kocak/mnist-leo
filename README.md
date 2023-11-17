@@ -1,90 +1,30 @@
-# React + Aleo + Leo
+# MNIST Classifier in Leo using Neural Network
+## Overview 
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/AleoHQ/sdk/tree/testnet3/create-aleo-app/template-react)
+This repository contains a neural network classifier application, written in the Leo programming language. It's developed as part of the Aleo Hackathon and utilizes the MNIST dataset for training and testing purposes.  
 
-This template provides a minimal setup to get React and Aleo working in Vite
-with HMR and some ESLint rules.
+## Installation 
+### Prerequisites 
+ - Docker: Ensure you have Docker installed on your system.  
+ 
+### Running the Application 
+1. Clone the repository to your local machine. 
+2. Navigate to the cloned directory. 
+3. Run the following command to start the application:
 
-This template includes a Leo program that is loaded by the web app located in
-the `helloworld` directory.
+``` docker-compose up ```
 
-Note: Webpack is currently used for production builds due to a
-[bug](https://github.com/vitejs/vite/issues/13367) with Vite related to nested
-workers.
+## Usage  
+-  **Training and Transpiling:** Use the `mnist_nn_leo_transpiler.ipynb` Jupyter notebook to train the neural network and transpile it to Leo language. 
+-  **Data Set:** The application uses the MNIST dataset for training the neural network classifier.
 
-### Start in development mode
+## Acknowledgements  
+- This project is a part of the [Aleo Hackathon](https://aleo.org). 
+- A big thank you to the organizers and supporters of the Aleo Hackathon. 
+- [Create Aleo App](https://developer.aleo.org/sdk/create-aleo-app/tutorial) is used to develop frontend
+## Contributing 
+Contributions to this project are welcome. 
+## License 
+This project is licensed under the [MIT License](LICENSE.md).
 
-```bash
-npm run dev
-```
 
-Your app should be running on http://localhost:5173/
-
-### Build Leo program
-
-1. Copy the `helloworld/.env.example` to `helloworld/.env` (this will be ignored
-   by Git):
-
-   ```bash
-   cd helloworld
-   cp .env.example .env
-   ```
-
-2. Replace `PRIVATE_KEY=user1PrivateKey` in the `.env` with your own key (you
-   can use an existing one or generate your own at https://aleo.tools/account)
-
-3. Follow instructions to install Leo here: https://github.com/AleoHQ/leo
-
-4. You can edit `helloworld/src/main.leo` and run `leo run` to compile and update the
-   Aleo instructions under `build` which are loaded by the web app.
-
-## Deploy program from web app
-
-> [!WARNING]  
-> This is for demonstration purposes or local testing only, in production applications you
-> should avoid building a public facing web app with private key information
-
-Information on generating a private key, seeding a wallet with funds, and finding a spendable record can be found here
-if you are unfamiliar: https://developer.aleo.org/testnet/getting_started/deploy_execute_demo
-
-Aleo programs deployed require unique names, make sure to edit the program's name to something unique in `helloworld/src/main.leo`, `helloworld/program.json`, rename `helloworld/inputs/helloworld.in` and rebuild.
-
-1. In the `worker.js` file modify the privateKey to be an account with available
-   funds
-
-   ```js
-   // Use existing account with funds
-   const account = new Account({
-     privateKey: "user1PrivateKey",
-   });
-   ```
-
-2. (Optional) Provide a fee record manually (located in commented code within `worker.js`)
-
-   If you do not provide a manual fee record, the SDK will attempt to scan for a record starting at the latest block. A simple way to speed this up would be to make a public transaction to this account right before deploying.
-   
-3. Run the web app and hit the deploy button
-
-## Production deployment
-
-### Build
-
-`npm run build`
-
-Upload `dist` folder to your host of choice.
-
-### ⚠️ Header warnings
-
-`DOMException: Failed to execute 'postMessage' on 'Worker': SharedArrayBuffer transfer requires self.crossOriginIsolated`
-
-If you get a warning similar to this when deploying your application, you need
-to make sure your web server is configured with the following headers:
-
-```
-Cross-Origin-Opener-Policy: same-origin
-Cross-Origin-Embedder-Policy: require-corp
-```
-
-We've included a `_headers` file that works with some web hosts (e.g. Netlify)
-but depending on your host / server setup you may need to configure the headers
-manually.

@@ -1,5 +1,5 @@
 {
-    "program": "helloworld.aleo",
+    "program": "nn_mnist.aleo",
     "version": "0.0.0",
     "description": "",
     "license": "MIT"

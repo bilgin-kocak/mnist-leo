@@ -67,7 +67,7 @@ function App() {
       let probability = max / sum;
 
 
-      results[index_]= `Result: ${index} with probability: ${probability}`
+      results[index_]= `Result: ${index} with probability: ${(100*probability).toFixed(3)}`
       setResults(results);
     } catch (error) {
       console.error('Error:', error);
@@ -97,11 +97,6 @@ function App() {
         ))}
       </div>
       {isLoading && <div className="modal">Running Classifier in Leo...</div>}
-      <button onClick={generateAccount}>
-            {account
-              ? `Account is ${JSON.stringify(account)}`
-              : `Click to generate account`}
-          </button>
       {/* <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

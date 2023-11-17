@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  color: #ebeff6;
 }
 
 .logo {
@@ -40,3 +41,34 @@
 .read-the-docs {
   color: #888;
 }
+
+.grid-item img {
+  min-width: 100px; /* Adjust minimum width as needed */
+  max-width: 100%;  /* Ensures the image is responsive and doesn't exceed its container */
+  height: auto;     /* Keeps the aspect ratio of the image */
+  min-height: 100px; /* Adjust minimum height as needed */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.grid-item {
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+

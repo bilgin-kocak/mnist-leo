@@ -11,6 +11,9 @@ function App() {
   const [account, setAccount] = useState(null);
   const [executing, setExecuting] = useState(false);
   const [deploying, setDeploying] = useState(false);
+  const [results, setResults] = useState(Array(9).fill(''));
+  const [isLoading, setLoading] = useState(false);
+
 
   const generateAccount = async () => {
     const key = await aleoWorker.getPrivateKey();
@@ -43,18 +46,63 @@ function App() {
     setDeploying(false);
   }
 
+  const handleImageClick = async (index) => {
+    const index_ = index;
+    setLoading(true);
+    try {
+      console.log(`http://localhost:3001/run-command?index=${index_}`)
+      const response = await fetch(`http://localhost:3001/run-command?index=${index_}`);
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
+      let result = data.result
+
+      // maximum valu in result array
+      let max = Math.max(...result);
+      // index of maximum value
+      let index = result.indexOf(max);
+      // sum of all values
+      let sum = result.reduce((a, b) => a + b, 0);
+      // probability of the maximum value
+      let probability = max / sum;
+
+
+      results[index_]= `Result: ${index} with probability: ${probability}`
+      setResults(results);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+    setLoading(false);
+  };
+
   return (
     <>
       <div>
         <a href="https://aleo.org" target="_blank">
           <img src={aleoLogo} className="logo" alt="Aleo logo" />
         </a>
-        <a href="https://react.dev" target="_blank">
+        {/* <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        </a> */}
       </div>
-      <h1>Aleo + React</h1>
-      <div className="card">
+      <h1>Leo Neural Network MNIST Classifier</h1>
+      <h4>Click the image to get classifier result from leo code.</h4>
+
+      <div className="grid">
+        {Array.from({ length: 9 }, (_, index) => (
+          <div key={index} className="grid-item" onClick={() => handleImageClick(index)}>
+            <img src={`/public/mnist/test_image_${index}.jpg`} alt={`Image ${index}`} />
+            <p>{results[index]}</p>
+          </div>
+        ))}
+      </div>
+      {isLoading && <div className="modal">Running Classifier in Leo...</div>}
+      <button onClick={generateAccount}>
+            {account
+              ? `Account is ${JSON.stringify(account)}`
+              : `Click to generate account`}
+          </button>
+      {/* <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
@@ -75,10 +123,10 @@ function App() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
-      </div>
+      </div> */}
 
       {/* Advanced Section */}
-      <div className="card">
+      {/* <div className="card">
         <h2>Advanced Actions</h2>
         <p>
           Deployment on Aleo requires certain prerequisites like seeding your
@@ -95,7 +143,7 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Aleo and React logos to learn more
-      </p>
+      </p> */}
     </>
   );
 }

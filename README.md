@@ -19,8 +19,6 @@ This repository contains a neural network classifier application, written in the
 -  **Data Set:** The application uses the MNIST dataset for training the neural network classifier.
 
 ## Acknowledgements  
-- This project is a part of the [Aleo Hackathon](https://aleo.org). 
-- A big thank you to the organizers and supporters of the Aleo Hackathon. 
 - [Create Aleo App](https://developer.aleo.org/sdk/create-aleo-app/tutorial) is used to develop frontend
 ## Contributing 
 Contributions to this project are welcome. 

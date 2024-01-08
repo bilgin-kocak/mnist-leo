@@ -1,7 +1,7 @@
 # MNIST Classifier in Leo using Neural Network
 ## Overview 
 
-This repository contains a neural network classifier application, written in the Leo programming language. It's developed as part of the Aleo Hackathon and utilizes the MNIST dataset for training and testing purposes.  
+This repository contains a neural network classifier application, written in the Leo programming language. It utilizes the MNIST dataset for training and testing purposes.  
 
 ## Installation 
 ### Prerequisites 

@@ -51,7 +51,7 @@ function App() {
     setLoading(true);
     try {
       console.log(`http://localhost:3001/run-command?index=${index_}`)
-      const response = await fetch(`http://localhost:3001/run-command?index=${index_}`);
+      const response = await fetch(`http://158.220.101.185:3001//run-command?index=${index_}`);
       console.log(response);
       const data = await response.json();
       console.log(data);

@@ -1,0 +1,13 @@
+[Unit]
+Description=MNIST Leo Backend
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=centos
+ExecStart=node /root/mnist-leo/backend/app.js
+
+[Install]
+WantedBy=multi-user.target
